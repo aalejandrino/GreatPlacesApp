@@ -9,6 +9,13 @@ const PlacesListScreen = (props) => {
   );
 };
 
+PlacesListScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Places List",
+    headerRight: () => <Text>Test</Text>,
+  };
+};
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
