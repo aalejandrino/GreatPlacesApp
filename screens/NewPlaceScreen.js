@@ -9,6 +9,12 @@ const NewPlaceScreen = (props) => {
   );
 };
 
+NewPlaceScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "New Place",
+  };
+};
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
