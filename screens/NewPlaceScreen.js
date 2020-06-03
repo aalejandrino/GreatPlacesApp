@@ -1,11 +1,24 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+
+import Colors from "../constant/Colors";
 
 const NewPlaceScreen = (props) => {
   return (
-    <View style={styles.screen}>
-      <Text>New Place Screen</Text>
-    </View>
+    <ScrollView>
+      <View style={styles.form}>
+        <Text style={styles.label}>Title:</Text>
+        <TextInput style={styles.textInput} />
+        <Button title="Submit" color={Colors.primary} onPress={() => {}} />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -16,10 +29,19 @@ NewPlaceScreen.navigationOptions = (navData) => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  form: {
+    margin: 30,
+  },
+  label: {
+    fontSize: 18,
+    marginBottom: 15,
+  },
+  textInput: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+    marginBottom: 15,
+    paddingVertical: 4,
+    paddingHorizontal: 2,
   },
 });
 
