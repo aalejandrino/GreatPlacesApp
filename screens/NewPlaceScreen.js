@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,12 +11,28 @@ import {
 import Colors from "../constant/Colors";
 
 const NewPlaceScreen = (props) => {
+  const [titleValue, setTitleValue] = useState("");
+
+  const titleChangeHandler = (text) => {
+    setTitleValue(text);
+  };
+
+  const submitFormHandler = () => {};
+
   return (
     <ScrollView>
       <View style={styles.form}>
         <Text style={styles.label}>Title:</Text>
-        <TextInput style={styles.textInput} />
-        <Button title="Submit" color={Colors.primary} onPress={() => {}} />
+        <TextInput
+          style={styles.textInput}
+          onChange={titleChangeHandler}
+          value={titleValue}
+        />
+        <Button
+          title="Submit"
+          color={Colors.primary}
+          onPress={submitFormHandler}
+        />
       </View>
     </ScrollView>
   );
