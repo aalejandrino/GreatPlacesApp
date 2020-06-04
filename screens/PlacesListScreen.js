@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Platform } from "react-native";
+import { Platform, FlatList } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 
 import { fetchPlaces } from "../store/actions/places";
 
-const PlacesListScreen = (props) => {
-  const test = useSelector((state) => state);
+import PlaceItem from "../components/PlaceItem";
 
-  console.log(test.places);
+const PlacesListScreen = (props) => {
+  const availablePlaces = useSelector((state) => state.places.availablePlaces);
 
   const dispatch = useDispatch();
 
@@ -22,10 +22,19 @@ const PlacesListScreen = (props) => {
     loadPlaces();
   }, [loadPlaces]);
 
+  const renderPlaceItem = (itemdata) => {
+    return <PlaceItem title={itemdata.item.title} />;
+  };
+
   return (
-    <View style={styles.screen}>
-      <Text>Places List Screen</Text>
-    </View>
+    // <View style={styles.screen}>
+    //   <Text>Places List Screen</Text>
+    // </View>
+    <FlatList
+      data={availablePlaces}
+      renderItem={renderPlaceItem}
+      keyExtractor={(item) => item.id}
+    />
   );
 };
 
