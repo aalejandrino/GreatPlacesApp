@@ -1,14 +1,22 @@
-import { ADD_PLACE } from "../actions/places";
+import { ADD_PLACE, FETCH_PLACES } from "../actions/places";
 
-initialState = {};
+initialState = {
+  places: [],
+};
 
-const placesReducer = (state = initialState, actions) => {
-  switch (actions.type) {
+const placesReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_PLACES:
+      return state;
+
     case ADD_PLACE:
       console.log("adding place");
-      return state;
+
+      return { ...state, places: updatedPlaces };
 
     default:
       return state;
   }
 };
+
+export default placesReducer;

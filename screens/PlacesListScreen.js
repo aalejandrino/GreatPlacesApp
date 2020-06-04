@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Platform } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 
+import { fetchPlaces } from "../store/actions/places";
+
 const PlacesListScreen = (props) => {
+  const test = useSelector((state) => state);
+
+  console.log(test.places);
+
+  const dispatch = useDispatch();
+
+  const loadPlaces = async () => {
+    await dispatch(fetchPlaces());
+  };
+
+  useEffect(() => {
+    loadPlaces();
+  }, [loadPlaces]);
+
   return (
     <View style={styles.screen}>
       <Text>Places List Screen</Text>

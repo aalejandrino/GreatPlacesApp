@@ -7,17 +7,24 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { addPlace } from "../store/actions/places";
 
 import Colors from "../constant/Colors";
 
 const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState("");
 
+  const dispatch = useDispatch();
+
   const titleChangeHandler = (text) => {
     setTitleValue(text);
   };
 
-  const submitFormHandler = () => {};
+  const submitFormHandler = () => {
+    dispatch(addPlace());
+  };
 
   return (
     <ScrollView>
