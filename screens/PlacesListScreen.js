@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Platform } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
@@ -14,9 +14,9 @@ const PlacesListScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const loadPlaces = async () => {
+  const loadPlaces = useCallback(async () => {
     await dispatch(fetchPlaces());
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     loadPlaces();

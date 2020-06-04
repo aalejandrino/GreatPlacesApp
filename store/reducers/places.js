@@ -1,7 +1,9 @@
 import { ADD_PLACE, FETCH_PLACES } from "../actions/places";
 
+import Place from "../../models/place";
+
 initialState = {
-  places: [],
+  availablePlaces: [],
 };
 
 const placesReducer = (state = initialState, action) => {
@@ -10,9 +12,11 @@ const placesReducer = (state = initialState, action) => {
       return state;
 
     case ADD_PLACE:
-      console.log("adding place");
+      const { title } = action.placeData;
+      const newPlace = new Place(new Date().toString(), title);
+      const updatedPlaces = [...state.availablePlaces, newPlace];
 
-      return { ...state, places: updatedPlaces };
+      return { ...state, availablePlaces: updatedPlaces };
 
     default:
       return state;

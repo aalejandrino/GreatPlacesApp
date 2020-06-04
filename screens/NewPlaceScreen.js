@@ -23,7 +23,8 @@ const NewPlaceScreen = (props) => {
   };
 
   const submitFormHandler = () => {
-    dispatch(addPlace());
+    dispatch(addPlace(titleValue));
+    props.navigation.popToTop();
   };
 
   return (
@@ -32,7 +33,7 @@ const NewPlaceScreen = (props) => {
         <Text style={styles.label}>Title:</Text>
         <TextInput
           style={styles.textInput}
-          onChange={titleChangeHandler}
+          onChangeText={titleChangeHandler}
           value={titleValue}
         />
         <Button
