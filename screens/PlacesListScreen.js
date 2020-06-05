@@ -23,7 +23,14 @@ const PlacesListScreen = (props) => {
   }, [loadPlaces]);
 
   const renderPlaceItem = (itemdata) => {
-    return <PlaceItem title={itemdata.item.title} />;
+    return (
+      <PlaceItem
+        title={itemdata.item.title}
+        address={itemdata.item.address}
+        image={itemdata.item.image}
+        onSelect={() => {}}
+      />
+    );
   };
 
   return (

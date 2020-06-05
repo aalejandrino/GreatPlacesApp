@@ -1,28 +1,56 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import Colors from "../constant/Colors";
 
 const PlaceItem = (props) => {
   return (
-    <View style={styles.container}>
-      <Text>{props.title}</Text>
-      <View style={styles.buttonContainer}>
-        <Button title="test1" onPress={() => {}} />
-        <Button title="test2" onPress={() => {}} />
+    <TouchableOpacity onPress={props.onSelect} style={styles.placeItem}>
+      <Image style={styles.image} source={{ uri: props.image }} />
+      <View style={styles.infoContainer}>
+        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.address}>{props.address}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    height: 300,
-    // width: "80%",
-    borderWidth: 1,
-    borderColor: "black",
+  placeItem: {
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    flexDirection: "row",
     alignItems: "center",
   },
-  buttonContainer: {
-    flexDirection: "row",
+  image: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: "blue",
+    borderColor: Colors.primary,
+    borderWidth: 1,
+  },
+  infoContainer: {
+    marginLeft: 25,
+    width: 250,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  title: {
+    color: "black",
+    fontSize: 18,
+  },
+  address: {
+    color: "#666",
+    fontSize: 16,
   },
 });
 

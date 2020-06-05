@@ -15,6 +15,8 @@ import Colors from "../constant/Colors";
 
 const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState("");
+  const [addressValue, setAddressValue] = useState("");
+  const [imageValue, setImageValue] = useState("");
 
   const dispatch = useDispatch();
 
@@ -31,6 +33,18 @@ const NewPlaceScreen = (props) => {
     <ScrollView>
       <View style={styles.form}>
         <Text style={styles.label}>Title:</Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={titleChangeHandler}
+          value={titleValue}
+        />
+        <Text style={styles.label}>Address:</Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={titleChangeHandler}
+          value={titleValue}
+        />
+        <Text style={styles.label}>Image:</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={titleChangeHandler}
