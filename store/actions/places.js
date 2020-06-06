@@ -7,9 +7,9 @@ export const fetchPlaces = () => {
   };
 };
 
-export const addPlace = (title) => {
+export const addPlace = (title, address, image) => {
   return {
     type: ADD_PLACE,
-    placeData: { title },
+    placeData: { title, address, image },
   };
 };

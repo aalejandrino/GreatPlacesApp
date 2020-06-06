@@ -12,8 +12,8 @@ const placesReducer = (state = initialState, action) => {
       return state;
 
     case ADD_PLACE:
-      const { title } = action.placeData;
-      const newPlace = new Place(new Date().toString(), title);
+      const { title, address, image } = action.placeData;
+      const newPlace = new Place(new Date().toString(), title, address, image);
       const updatedPlaces = [...state.availablePlaces, newPlace];
 
       return { ...state, availablePlaces: updatedPlaces };

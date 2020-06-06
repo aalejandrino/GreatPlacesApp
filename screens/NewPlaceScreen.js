@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import {
   View,
   Text,
@@ -20,12 +20,28 @@ const NewPlaceScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const titleChangeHandler = (text) => {
-    setTitleValue(text);
+  const textChangeHandler = (inputIdentifier, text) => {
+    // console.log(inputIdentifier);
+    switch (inputIdentifier) {
+      case "title":
+        setTitleValue(text);
+        return;
+
+      case "address":
+        setAddressValue(text);
+        return;
+
+      case "image":
+        setImageValue(text);
+        return;
+
+      default:
+        return;
+    }
   };
 
   const submitFormHandler = () => {
-    dispatch(addPlace(titleValue));
+    dispatch(addPlace(titleValue, addressValue, imageValue));
     props.navigation.popToTop();
   };
 
@@ -35,20 +51,20 @@ const NewPlaceScreen = (props) => {
         <Text style={styles.label}>Title:</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={titleChangeHandler}
+          onChangeText={(text) => textChangeHandler("title", text)}
           value={titleValue}
         />
         <Text style={styles.label}>Address:</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={titleChangeHandler}
-          value={titleValue}
+          onChangeText={(text) => textChangeHandler("address", text)}
+          value={addressValue}
         />
         <Text style={styles.label}>Image:</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={titleChangeHandler}
-          value={titleValue}
+          onChangeText={(text) => textChangeHandler("image", text)}
+          value={imageValue}
         />
         <Button
           title="Submit"

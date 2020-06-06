@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
     borderColor: Colors.primary,
     borderWidth: 1,
+    // overflow: "hidden",
   },
   infoContainer: {
     marginLeft: 25,

@@ -28,7 +28,9 @@ const PlacesListScreen = (props) => {
         title={itemdata.item.title}
         address={itemdata.item.address}
         image={itemdata.item.image}
-        onSelect={() => {}}
+        onSelect={() => {
+          props.navigation.navigate("PlaceDetail", { place: itemdata.item });
+        }}
       />
     );
   };
