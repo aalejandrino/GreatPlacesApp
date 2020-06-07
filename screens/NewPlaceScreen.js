@@ -13,35 +13,41 @@ import { addPlace } from "../store/actions/places";
 
 import Colors from "../constant/Colors";
 
+const FORM_INPUT_UPDATE = "FORM_INPUT_UPDATE";
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case FORM_INPUT_UPDATE:
+      return { ...state, [action.input]: action.text };
+    default:
+      return state;
+  }
+};
+
 const NewPlaceScreen = (props) => {
-  const [titleValue, setTitleValue] = useState("");
-  const [addressValue, setAddressValue] = useState("");
-  const [imageValue, setImageValue] = useState("");
+  // const [titleValue, setTitleValue] = useState("");
+  // const [addressValue, setAddressValue] = useState("");
+  // const [imageValue, setImageValue] = useState("");
+
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    title: "",
+    address: "",
+    image: "",
+  });
 
   const dispatch = useDispatch();
 
   const textChangeHandler = (inputIdentifier, text) => {
     // console.log(inputIdentifier);
-    switch (inputIdentifier) {
-      case "title":
-        setTitleValue(text);
-        return;
-
-      case "address":
-        setAddressValue(text);
-        return;
-
-      case "image":
-        setImageValue(text);
-        return;
-
-      default:
-        return;
-    }
+    dispatchFormState({
+      type: FORM_INPUT_UPDATE,
+      input: inputIdentifier,
+      text,
+    });
   };
 
   const submitFormHandler = () => {
-    dispatch(addPlace(titleValue, addressValue, imageValue));
+    dispatch(addPlace(formState.title, formState.address, formState.image));
     props.navigation.popToTop();
   };
 
@@ -52,19 +58,19 @@ const NewPlaceScreen = (props) => {
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => textChangeHandler("title", text)}
-          value={titleValue}
+          value={formState.title}
         />
         <Text style={styles.label}>Address:</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => textChangeHandler("address", text)}
-          value={addressValue}
+          value={formState.address}
         />
         <Text style={styles.label}>Image:</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => textChangeHandler("image", text)}
-          value={imageValue}
+          value={formState.image}
         />
         <Button
           title="Submit"
