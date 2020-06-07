@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 
+import ImagePicker from "../components/ImagePicker";
+
 import { addPlace } from "../store/actions/places";
 
 import Colors from "../constant/Colors";
@@ -72,6 +74,7 @@ const NewPlaceScreen = (props) => {
           onChangeText={(text) => textChangeHandler("image", text)}
           value={formState.image}
         />
+        <ImagePicker />
         <Button
           title="Submit"
           color={Colors.primary}

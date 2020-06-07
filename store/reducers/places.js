@@ -2,7 +2,7 @@ import { ADD_PLACE, FETCH_PLACES } from "../actions/places";
 
 import Place from "../../models/place";
 
-initialState = {
+const initialState = {
   availablePlaces: [],
 };
 
