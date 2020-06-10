@@ -27,9 +27,7 @@ const formReducer = (state, action) => {
 };
 
 const NewPlaceScreen = (props) => {
-  // const [titleValue, setTitleValue] = useState("");
-  // const [addressValue, setAddressValue] = useState("");
-  // const [imageValue, setImageValue] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     title: "",
@@ -48,8 +46,12 @@ const NewPlaceScreen = (props) => {
     });
   };
 
+  const imageTakenHandler = (imageURI) => {
+    setSelectedImage(imageURI);
+  };
+
   const submitFormHandler = () => {
-    dispatch(addPlace(formState.title, formState.address, formState.image));
+    dispatch(addPlace(formState.title, formState.address, selectedImage));
     props.navigation.popToTop();
   };
 
@@ -69,12 +71,7 @@ const NewPlaceScreen = (props) => {
           value={formState.address}
         />
         <Text style={styles.label}>Image:</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={(text) => textChangeHandler("image", text)}
-          value={formState.image}
-        />
-        <ImagePicker />
+        <ImagePicker onImageTaken={imageTakenHandler} />
         <Button
           title="Submit"
           color={Colors.primary}
